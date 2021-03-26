@@ -1,0 +1,214 @@
+{% extends 'base.html' %}
+{% block title %} | Our Cars Inventory {% endblock %}
+{% load static %}
+{% block content %}
+
+<!-- Sub banner start -->
+<div class="sub-banner overview-bgi">
+    <div class="container breadcrumb-area">
+        <div class="breadcrumb-areas">
+            <h1>Our Car Inventory</h1>
+            <ul class="breadcrumbs">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li class="active">Cars</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Sub Banner end -->
+
+<!-- Featured car start -->
+<div class="featured-car content-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
+
+                <div class="row">
+                  {% for car in cars %}
+                    <div class="col-lg-6 col-md-6">
+                        <div class="car-box-3">
+                            <div class="car-thumbnail">
+                                <a href="{% url 'car_detail' car.id %}" class="car-img">
+                                    <div class="tag">For Rent</div>
+                                    <div class="price-box">
+                                        <span>{{ car.price}}</span>
+                                    </div>
+                                    <img class="d-block w-100" src="{{car.car_photo_1.url}}" alt="car" style="min-height: 262px; max-height: 262px;">
+                                </a>
+                                <div class="carbox-overlap-wrapper">
+                                    <div class="overlap-box">
+                                        <div class="overlap-btns-area">
+                                            <div class="car-magnify-gallery">
+                                                <a href="{{car.car_photo_1.url}}" class="overlap-btn">
+                                                    <i class="fa fa-expand"></i>
+                                                    <img class="hidden" src="{{car.car_photo_1.url}}">
+                                                </a>
+                                                <a href="{{car.car_photo_2.url}}" class="hidden" >
+                                                    <img class="hidden" src="{{car.car_photo_1.url}}">
+                                                </a>
+                                                <a href="{{car.car_photo_3.url}}" class="hidden">
+                                                    <img class="hidden" src="{{car.car_photo_3.url}}">
+                                                </a>
+                                                <a href="{{car.car_photo_4.url}}" class="hidden">
+                                                    <img class="hidden" src="{{car.car_photo_4.url}}">
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="detail">
+                                <h1 class="title">
+                                    <a href="{% url 'car_detail' car.id %}">{{car.car_title}}</a>
+                                </h1>
+                                <div class="location">
+                                    <a href="car-details.html">
+                                        <i class="flaticon-pin"></i>{{car.state}},{{car.city}}
+                                    </a>
+                                </div>
+                                <ul class="facilities-list clearfix">
+                                    <li>{{car.model}}</li>
+                                    <li>{{car.price}}</li>
+
+                                    <li>{{car.color}}</li>
+                                    <li>2021</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+
+
+                </div>
+                <!-- Page navigation start -->
+                <div class="pagination-box p-box-2 text-center">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" href="#"><i class="fa fa-angle-left"></i></a>
+                            </li>
+                            <li class="page-item"><a class="page-link active" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#"><i class="fa fa-angle-right"></i></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <div class="sidebar-right">
+                    <!-- Advanced search start -->
+
+                                        <div class="widget advanced-search d-none-992">
+                                            <button class="btn btn-outline-danger bomd btn-block btn-lg" data-toggle="modal" data-target="#inquiryModal">Send message</button>
+                                        </div>
+                                        <!-- Inquiry Modal -->
+                    <div class="modal fade" id="inquiryModal" role="dialog">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="contact-dealer modal-header">
+                            <!-- <h5 class="modal-title" id="inquiryModalLabel">Contact Dealer</h5> -->
+                            <center><img src="{% static 'img/logos/logo-black-white.png' %}"></center>
+                            <button type="button" class="close" data-dismiss="modal">
+                              <span>&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <form action="#">
+                                <div class="form-group">
+                                  <label for="name" class="col-form-label">Hello, My Name is</label>
+                                  <div class="row">
+                                    <div class="col">
+                                      <input type="text" name="first_name" class="form-control" placeholder="First Name" required>
+                                    </div>
+                                    <div class="col">
+                                      <input type="text" name="last_name" class="form-control" placeholder="Last Name" required>
+                                    </div>
+                                  </div>
+                                </div>
+                                  <div class="form-group">
+                                      <select class="form-control" id="sel1" name="customer_need">
+                                        <option value="I'm interested in this">I'm interested in this</option>
+                                        <option value="I'd like to know your best price for this">I'd like to know your best price for this</option>
+                                        <option value="I'd like to test drive this">I'd like to test drive this</option>
+                                        <option value="I'd like a history report for this">I'd like a history report for this</option>
+                                      </select>
+                                    </div>
+
+                                <div class="form-group">
+                                  <input type="text" name="car_title" class="form-control" value="LAMBORGHINI HURACÁN." readonly>
+                                </div>
+
+                                <div class="form-group">
+                                  <label for="name" class="col-form-label">I live in</label>
+                                  <div class="row">
+                                    <div class="col">
+                                      <input type="text" name="city" class="form-control" placeholder="City" required>
+                                    </div>
+                                    <div class="col">
+                                      <input type="text" name="state" class="form-control" placeholder="State" required>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <div class="row">
+                                    <div class="col">
+                                        <label for="name" class="col-form-label">You can reach me by email at</label>
+                                      <input type="email" name="email" class="form-control" placeholder="Email Address" required>
+                                    </div>
+                                    <div class="col">
+                                        <label for="phone" class="col-form-label">or by phone at</label>
+                                      <input type="text" name="phone" placeholder="Phone Number (optional)" class="form-control">
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label for="message" class="col-form-label">Add comments</label>
+                                  <textarea name="message" class="form-control" placeholder="Enter your message here (optional)"></textarea>
+                                </div>
+                                <hr>
+                                <input type="submit" value="Send" class="btn btn-block btn-danger">
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Question start -->
+                    <div class="widget question">
+                        <h5 class="sidebar-title">Get a Question?</h5>
+                        <ul class="contact-info">
+                            <li>
+                                <i class="flaticon-pin"></i>Durbarmarg, Kathmandu
+                            </li>
+                            <li>
+                                <i class="flaticon-mail"></i><a href="mailto:info@themevessel.com">info@carzone.com</a>
+                            </li>
+                            <li>
+                                <i class="flaticon-phone"></i><a href="tel:+0477-85x6-552">+41 77 85x6 552</a>
+                            </li>
+                        </ul>
+                        <div class="social-list clearfix">
+                            <ul>
+                                <li><a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#" class="google-bg"><i class="fa fa-google-plus"></i></a></li>
+                                <li><a href="#" class="rss-bg"><i class="fa fa-rss"></i></a></li>
+                                <li><a href="#" class="linkedin-bg"><i class="fa fa-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Featured car end -->
+
+{% endblock %}
