@@ -31,11 +31,11 @@ def inquiry(request):
         admin_email = admin_info.email
         send_mail(
                 'New Car Inquiry',
-                'You have a new inquiry for the car ' + str(car_title) + '.Please login to your admin panel for more info.'
+                'You have a new inquiry for the car ' + str(car_title) + '.Please login to your admin panel for more info.',
                 'devs44sunuwar@gmail.com',
                 [admin_email],
                 fail_silently=False,
-                
+
         )
 
         contact.save()
