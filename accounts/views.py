@@ -55,7 +55,7 @@ def dashboard(request):
     data = {
         'inquires': user_inquiry,
     }
-    return render(request,'accounts/dashboard.html')
+    return render(request,'accounts/dashboard.html', data)
 
 def logout(request):
     if request.method == 'POST':

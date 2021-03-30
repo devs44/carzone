@@ -35,7 +35,7 @@ def contact(request):
         email = request.POST['email']
         subject = request.POST['subject']
         phone = request.POST['phone']
-        message = request.POST['messages']
+        message = request.POST['message']
 
         email_subject = 'You have a new message from Carzone website regarding ' + subject
         message_body = 'Name: ' + name + '. Email: '+ email + '.Phone' + phone + '.Message: ' + message
